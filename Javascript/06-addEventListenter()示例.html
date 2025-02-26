@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table id="outside">
+    <tr>
+      <td id="t1">1</td>
+    </tr>
+    <tr>
+      <td id="t2">2</td>
+    </tr>
+  </table>
+
+  <script>
+    //1.示例一
+    //改变 t2 内容的函数
+    function nC (){
+      const t2 = document.getElementById("t2");
+      const t3 = t2.firstChild.nodeValue === "3";
+      t2.firstChild.nodeValue = t3 ? "2" : "3";
+    }
+
+    //table 添加事件监听器
+    const e = document.getElementById("outside");
+    e.addEventListener("click",nC,false);
+
+    //示例二
+    const controller
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn1">点击按钮 1</button>
+  <button id="btn2">点击按钮 2</button>
+  <button id="btn3">点击按钮 3</button>
+  <button id="btn4">点击按钮 4</button>
+
+  <script>
+    //1.回调函数
+    // const button1 = document.getElementById("btn1");
+
+    // //定义回调函数
+    // function handleClick() {
+    //   console.log("按钮 1 被点击（函数回调）");
+    // }
+
+    // //绑定监听器
+    // button1.addEventListener("click",handleClick);
+
+    //2.对象监听器
+    //复用对象监听器控制多个按钮
+    // const btnHandler = {
+    //   handleEvent:function(e){
+    //     const buttonId = e.target.id;
+    //     console.log(`按钮${buttonId}被点击`);
+    //   }
+    // };
+    
+    // const button1 = document.getElementById("btn1");
+    // const button2 = document.getElementById("btn2");
+    // const button3 = document.getElementById("btn3");
+    // const button4 = document.getElementById("btn4");
+
+    // button1.addEventListener("click",btnHandler);
+    // button2.addEventListener("click",btnHandler);
+    // button3.addEventListener("click",btnHandler);
+    // button4.addEventListener("click",btnHandler);
+  </script>
+</body>
+</html>
