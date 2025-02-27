@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="example-button">你没有点击按钮</button>
+  <button id="reset-button">点击这个按钮重置第一个按钮</button>
+
+  <script>
+    const btnClicked = document.getElementById("example-button");
+    const resetButton = document.getElementById("reset-button");
+    //示例按钮的初始文本
+    const initialText = btnClicked.textContent;
+
+    //点击示例按钮后显示的文本
+    const clickedText = "你点击过了这个按钮。";
+
+    //将事件监听器函数单独提出，以防止重复添加监听函数
+    function eventListener(){
+      btnClicked.textContent = clickedText;
+    }
+
+    function addListener(){
+      btnClicked.addEventListener("click",eventListener,{
+        passive:true,
+        once:true,
+      });
+    }
+
+    //当点击重置按钮后，示例按钮将被重置，并可以再次更新它自身的状态
+    resetButton.addEventListener("click",() =>{
+      btnClicked.textContent = initialText;
+      addListener();
+    });
+
+    addListener();
+
+  </script>
+</body>
+</html>

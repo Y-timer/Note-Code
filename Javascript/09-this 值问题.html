@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this 问题</title>
+</head>
+<body>
+  <table id="myTable" onclick="logId();">this 指向谁</table>
+
+  <!-- <table id="myTable" onclick="console.log(this.id);">this 指向哪里</table> -->
+  <!-- <div class="box">
+    <button id="my_element">just a button</button>
+  </div> -->
+  
+  <script>
+    // const myElement = document.getElementById("my_element");
+    // myElement.addEventListener("click",function(e){
+    //   console.log(this.className);
+    //   console.log(e.currenTarget === this);
+    // });
+
+    // myElement.addEventListener("click",(e) => {|
+    //   console.log(this.class);
+    //   console.log(e.currentTarget === this)
+    // })
+
+    function logId(){
+      console.log(this.id);
+    }
+  </script>
+</body>
+</html>

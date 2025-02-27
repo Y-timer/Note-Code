@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //第一种
+    // const Something = function(e){
+    //   this.name = "Something Good";
+    //   this.onclick1 = function(e){
+    //     console.log(this.name);
+    //   };
+    //   this.onclick2 = function(event){
+    //   console.log(this.name);
+    // }
+    // this.onclick2 = this.onclick2.bind(this);
+
+    // e.addEventListener("click",this.onclick1,false);
+    // e.addEventListener("click",this.onclick2,false);
+    // }
+    
+    //第二种方法
+    // const Something = function(e){
+    //   this.name = "Something Good";
+    //   this.handleEvent = function(event){
+    //     cosnole.log(this.name);
+    //     switch(event.type){
+    //       case "click":
+    //       break;
+    //       case "dbclick":
+    //         break;
+    //     }
+    //   };
+    //   e.addEventListener("click",this,false);
+    //   e.addEventListener("click",this,false);
+    // };
+    // const s = new Something(document.body);
+
+    //第三种办法
+    class SomeClass {
+      constructor(){
+        this.name = "Something Good";
+      }
+      register(){
+        const that = this;
+        window.addEventListener("keydown",(e) =>{
+          that.someMethod(e);
+        });
+      }
+      someMethod(e){
+        console.log(this.name);
+        switch(e.keyCode){
+          case 5:
+            break;
+          case 6:
+            break;
+        }
+      }
+    }
+    const myObjet = new SomeClass();
+    myObjet.register();
+  </script>
+</body>
+</html>

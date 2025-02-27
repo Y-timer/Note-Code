@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="my-button-id">button id</button>
+  <script>
+    // const myButton = document.getElementById("my-button-id");
+    // let someString = "Data";
+    // myButton.addEventListener("click",() =>{
+    //   console.log(someString);
+    //   someString="Data Again";
+    // });
+    // console.log(someString);
+
+    const myButton = document.getElementById("my-button-id");
+    const someObject = {aProperty:"Data"};
+
+    myButton.addEventListener("click",()=>{
+      console.log(someObject.aProperty)//预计输出：Data
+
+      someObject.aProperty = "Data Again";//更改值
+    });
+
+    setInterval(() =>{
+      if(someObject.aProperty === "Data Again"){
+        console.log("Data Again:True");
+        someObject.aProperty = "Data";
+      }
+    },5000);
+  </script>
+</body>
+</html>

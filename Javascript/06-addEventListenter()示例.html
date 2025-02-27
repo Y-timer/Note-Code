@@ -16,20 +16,33 @@
   </table>
 
   <script>
-    //1.示例一
-    //改变 t2 内容的函数
-    function nC (){
-      const t2 = document.getElementById("t2");
-      const t3 = t2.firstChild.nodeValue === "3";
-      t2.firstChild.nodeValue = t3 ? "2" : "3";
-    }
+    // 1.示例一
+    // 改变 t2 内容的函数
+    // function nC (){
+    //   const t2 = document.getElementById("t2");
+    //   const t3 = t2.firstChild.nodeValue === "3";
+    //   t2.firstChild.nodeValue = t3 ? "2" : "3";
+    // }
 
-    //table 添加事件监听器
-    const e = document.getElementById("outside");
-    e.addEventListener("click",nC,false);
+    // table 添加事件监听器
+    // const e = document.getElementById("outside");
+    // e.addEventListener("click",nC,false);
 
     //示例二
-    const controller
+    const controller = new AbortController();
+    const e = document.getElementById("outside");
+    e.addEventListener("click",numberChanger,{ signal:controller.signal});
+
+    function numberChanger(){
+      const t2 = document.getElementById("t2");
+      if(t2.firstChild.nodeValue === "3"){
+        t2.firstChild.nodeValue = "2"
+      }
+      else{
+        t2.firstChild.nodeValue = "3";
+        controller.abort();//当值变为"3"后，移除监听器
+      }
+    }
   </script>
 </body>
 </html>
