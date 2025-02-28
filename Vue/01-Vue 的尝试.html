@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input v-model="message" />
+    <p>
+      {{ message. }}
+      <!--上述的 message 可以当成一个变量使用 -->
+    </p>
+  </div>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  const { createApp } = Vue  //从 Vue 中解构出 creatApp 函数
+
+  const vueApp = {
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
+    }
+  };
+  createApp(vueApp).mount('#app');//mount，它之后的有元素类似挂载的元素
+
+  //这个 <script> 只是获得一个叫做 creatApp 函数，创建一个对象，将这个对象作为一个参数，传递给 createApp 这个函数，最后在调用 mount 函数。
+</script>
+</body>
+</html>
