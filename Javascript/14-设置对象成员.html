@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const star = {
+      name:["LeBron","James"],
+      age:40,
+    };
+    //之前的信息会被覆盖掉
+    // star.age = 39;
+    // star.name = ["Stephen","Curry"];
+    
+    console.log(star.name);
+    console.log(star.age);
+
+    //添加对象成员信息
+    star["belong"] = "Los Angeles Lakers";
+    star.description = function(){
+      console.log("The first player in history to score 40,000 points")
+    }
+    star.description();
+    console.log(star.belong);
+
+    const person1 ={
+      name:"Kain",
+      introduceSelf(){
+        console.log(`你好！我是${this.name}。`);
+      },
+    };
+    const person2 = {
+      name:"Tom",
+      introduceSelf(){
+        console.log(`你好！我是${this.name}。`);
+      },
+    };
+
+    //函数
+    // function createPerson(name){
+    //   const obj = {}
+    //     obj.name= name;
+    //     obj.introduceSelf = function(){
+    //       console.log(`你好！我是${this.name}。`);
+    //     };
+    //     return obj; 
+    // }
+    
+    // const Kain = createPerson("Kain");
+    // Kain.name;
+    // Kain.introduceSelf();
+
+    //构造函数
+    function person(name){
+      this.name = name;
+      this.introduceSelf = function(){
+        console,log(`你好！我是${this.name}。`);
+      };
+    }
+    //使用
+    const Kain = new Person("Kain");
+    Kain.name;
+    Kain.introduceSelf()
+    
+
+  </script>
+</body>
+</html>

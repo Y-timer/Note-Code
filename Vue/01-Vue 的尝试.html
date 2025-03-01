@@ -9,15 +9,14 @@
   <div id="app">
     <input v-model="message" />
     <p>
-      {{ message. }}
-      <!--上述的 message 可以当成一个变量使用 -->
+      {{ message.length }}
     </p>
   </div>
 
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-  const { createApp } = Vue  //从 Vue 中解构出 creatApp 函数
+  const { createApp } = Vue;  //从 Vue 中解构出 creatApp 函数
 
   const vueApp = {
     data() {
@@ -26,9 +25,12 @@
       }
     }
   };
-  createApp(vueApp).mount('#app');//mount，它之后的有元素类似挂载的元素
+  createApp(vueApp).mount('#app');//mount,它是挂载的意思，它之后的有元素类似挂载的元素
 
   //这个 <script> 只是获得一个叫做 creatApp 函数，创建一个对象，将这个对象作为一个参数，传递给 createApp 这个函数，最后在调用 mount 函数。
+
+  //将输入框里的文本改变后，下面的<p>标签里的内容也发生了改变。原因是引入了同一个变量，才产生了相同的变化
+  
 </script>
 </body>
 </html>
