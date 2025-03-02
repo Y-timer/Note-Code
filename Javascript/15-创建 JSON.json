@@ -1,0 +1,22 @@
+[
+  {
+  "name":"Kevin",
+  "age":20,
+  "isStudent":true,
+  "hobbies":["games","music"],
+  "address":{
+  "city":"Hefei",
+  "homeTown":"Fuyang"
+  }
+  },
+  {
+    "name":"Kain",
+    "age":19,
+    "isStudent":true,
+    "hobbies":["ball games","music"],
+    "address":{
+    "city":"Hefei",
+    "homeTown":"Nanjing"
+    }
+  }
+]
