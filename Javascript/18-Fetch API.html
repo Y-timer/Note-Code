@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>诗歌阅读器</title>
+</head>
+
+<body>
+  <h1>诗歌选集</h1>
+
+   <!-- 下拉选择框 -->
+   <select id="verseChoose">
+    <option>Verse 1</option>
+    <option>Verse 2</option>
+    <option>Verse 3</option>
+    <option>Verse 4</option>
+</select>
+
+<!-- 诗歌显示区域 -->
+<pre id="poemDisplay" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 20px;"></pre>
+
+<script>
+    // 获取 DOM 元素
+    const verseChoose = document.querySelector("#verseChoose");
+    const poemDisplay = document.querySelector("#poemDisplay");
+
+    // 监听选择框变化
+    verseChoose.addEventListener("change", () => {
+        const verse = verseChoose.value;
+        updateDisplay(verse);
+    });
+
+    // 更新显示内容
+    function updateDisplay(verse) {
+        // 格式化文件名
+        const filename = verse.replace(" ", "").toLowerCase() + ".txt";
+        
+        // 发起 Fetch 请求
+        fetch(filename)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP 错误：${response.status}`);
+                }
+                return response.text();
+            })
+            .then(text => {
+                poemDisplay.textContent = text;
+            })
+            .catch(error => {
+                poemDisplay.textContent = `获取诗歌失败：${error.message}`;
+            });
+    }
+
+    // 初始化加载第一首
+    updateDisplay("Verse 1");
+    verseChoose.value = "Verse 1";
+</script>
+</body>
+</html>
