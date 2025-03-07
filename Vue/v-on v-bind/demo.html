@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Document</title>
+  <style>
+    .red-text{
+      color: red;
+    }
+    .blue-text{
+      color:blue;
+    }
+    #app{
+      text-align: center;
+    }
+    button{
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1 v-bind:class="textColor">Demo</h1>
+    <select id="color-select" title="Change text color" v-model="textColor">
+      <option value="red-text">red</option>
+      <option value="blue-text">blue</option>
+    </select>
+
+    <button type="button" v-bind:disabled="isDisabled" v-on:click="handleClickTodisable">Click To Disable Me</button>
+    <button type="button" @:click="handleClickToEnable">Click To Enable Above</button>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

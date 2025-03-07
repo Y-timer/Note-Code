@@ -7,21 +7,17 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-
-    <div>
+    <div id="app">
       <label for="input-demo">Vue Input:</label>
       <input id="input-demo" class="input-text" type="text" v-model="inputText" />
       <p class="p-text">{{ inputText }}</p>
-    </div>
-
     <hr />
+    </div>
     <div>
-      <label for="input-demo">VanillaJS Input:</label>
+      <label for="input-demo">VanillaJS Input</label>
       <input id="input-demo" class="input-text" type="text" />
       <p class="p-text"></p>
     </div>
-
     <script src="Vanilla.js"></script>
     <script src="vue.js"></script>
   </body>

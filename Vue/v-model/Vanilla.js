@@ -1,6 +1,5 @@
-const inputEl =document.querySelector(".input-text");
+const inputEl = document.querySelector(".input-text");
 const pEl = document.querySelector(".p-text");
-
-inputEl.addEventListener("input-text",(e) =>{
+inputEl.addEventListener("input",(e) =>{
   pEl.textContent = e.target.value;
 });
