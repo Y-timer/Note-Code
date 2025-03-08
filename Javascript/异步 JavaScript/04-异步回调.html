@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>回调</title>
+</head>
+<body>
+  <script>
+    function Step1(init){
+      return init + 1;
+    }
+    function Step2(init){
+      return init * 3 ;
+    }
+    function Step3(init){
+      return init + 3;
+    }
+    function Operation(){
+      let result = 0;
+      result = Step1(result);
+      result = Step2(result);
+      result = Step3(result);
+      console.log(`结果：${result}`);
+    }
+    Operation();
+
+    //回调
+    function Step4(init,callback){
+      const result = init + 1;
+      callback(result);
+    }
+    function Step5(init,callback){
+      const result = init * 4;
+      callback(result);
+    }
+    function step6(init,callback){
+      const result = init + 3;
+      callback(result);
+    }
+    function Operation2(){
+      Step4(0,(result1)=>{
+        Step5(result1,(result2)=>{
+          step6(result2,(result3)=>{
+            console.log(`结果：${result3}`);
+          });
+        });
+      });
+    }
+    Operation2();
+  </script>
+</body>
+</html>
