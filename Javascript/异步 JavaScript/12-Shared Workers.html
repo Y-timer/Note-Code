@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Shared Worker 示例</h2>
+  <button onclick="sendMessage()">发送消息到 Shared Worker</button>
+  <div id="output"></div>
+
+  <script>
+    //创建 Shared Worker
+    const worker = new SharedWorker("13-shared worker.js");
+
+    //接收消息
+    worker.port.onmessage = (e) =>{
+      document.getElementById("output").innerHTML += `收到回复：${e.data}<br>`;
+    };
+
+    //发送消息
+    function sendMessage(){
+      const message = `来自页面${Math.floor(Math.random() * 100)}`;
+      worker.port.postMessage(message);
+    }
+  </script>
+</body>
+</html>

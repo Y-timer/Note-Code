@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    textarea{
+      display: block;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="quota">质数的个数:</label>
+  <input type="text" id="quota" name="quota" value="1000000">
+
+  <button id="generate">生成质数</button>
+  <button id="reload">重置</button>
+
+  <textarea id="user-input" rows="5" cols="62">按下“生成质数”后立即在此处输入</textarea>
+
+  <div id="output"></div>
+
+  <script src="10-main.js"></script>
+</body>
+
+</html>
