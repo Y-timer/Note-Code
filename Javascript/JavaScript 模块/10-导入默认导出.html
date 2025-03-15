@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>导入默认导出</title>
+</head>
+
+<body>
+  <script type="module">
+    import myAddFunction from './09-默认导出和具名导出.js';
+    import { photoNumber , Name } from './09-默认导出和具名导出.js';
+    console.log(myAddFunction(234,433));
+    console.log(`我的名字：${Name}，我的电话号码为：${photoNumber}`);
+  </script>
+</body>
+
+</html>

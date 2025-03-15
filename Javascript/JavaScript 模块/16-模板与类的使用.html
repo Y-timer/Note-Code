@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模板与类的使用</title>
+</head>
+
+<body>
+  <script type="module">
+    // import User from './15-模块与类.js';
+    //  const kevin = new User("Kevin","Kevin@example.com");
+    //  console.log(kevin.greet());
+    //  console.log(User.validateEmail("test"));
+
+    //导入并使用多类
+    import { Circle, Square } from './15-模块与类.js';
+
+    const redCircle = new Circle("red",5);
+    console.log("圆面积：",redCircle.getArea());
+
+    const blueSquare = new Square("blue",4);
+    console.log("正方形面积：",blueSquare.getArea());
+  </script>
+</body>
+
+</html>

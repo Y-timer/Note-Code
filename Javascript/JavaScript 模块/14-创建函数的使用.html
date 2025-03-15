@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>创建函数的使用</title>
+</head>
+<body>
+  <script type="module">
+    import userManager from './13-创建模块对象.js';
+
+    //添加对象
+    userManager.addUser("Kevin");
+    userManager.addUser("Alice");
+    userManager.addUser("Tom");
+
+    console.log("用户数量：",userManager.getUserCount());
+    console.log("用户列表：",userManager.getUsers());
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义可迭代对象</title>
+</head>
+
+<body>
+  <script>
+    var myIterable = {
+      *[Symbol.iterator](){
+        yield 5;
+        yield 2;
+        yield 3;
+      },
+    };
+    for(let value of myIterable){
+      console.log(value);
+    }
+  </script>
+</body>
+
+</html>

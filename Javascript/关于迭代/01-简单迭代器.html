@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迭代器</title>
+</head>
+
+<body>
+  <script>
+    // function makeRangeIterator(start = 0,end = Infinity,step = 1){
+    //   //初始化变量：起始值、当前索引、迭代次数计数器
+    //   let nextIndex = start;
+    //   let iterationCount = 0;
+
+    //   //定义迭代器对象
+    //   const rangeIterator = {
+    //     next(){
+    //       //如果当前索引未达到结束值，则返回当前值，并标记未完成（done：false）
+    //       let result;
+    //       if(nextIndex < end){
+    //         result = {value:nextIndex,done:false};
+    //         nextIndex += step; //更新下一个索引
+    //         iterationCount++; //增加迭代次数
+    //         return result;
+    //       }
+    //       //结束迭代时，返回总迭代次数，并标记完成（done:true）
+    //       return {value:iterationCount,done:true};
+    //     },
+    //   };
+    //   return rangeIterator; //返回迭代器对象
+    // }
+
+    //生成器函数
+    function* makeRangeIterator(start = 0,end = Infinity,step = 1)
+    {
+      let iterationCount = 0;
+      for(let i = start;i < end;i += step){
+        iterationCount++;
+        yield i;
+      }
+      return iterationCount
+    }
+
+    //上述可以看成这样：
+    let it = makeRangeIterator(1 , 10, 2);
+
+    let result = it.next();
+    while (!result.done) {
+      console.log(result.value);
+      result = it.next();
+    }
+
+    console.log(`已迭代序列的大小：${result.value}`); 
+
+  </script>
+</body>
+
+</html>
