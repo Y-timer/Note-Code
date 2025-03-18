@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0 auto;
+      text-align: center;
+    }
+    li{
+      list-style: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>To do a list</h1>
+    <hr />
+    <br />
+
+    <input placeholder="Enter content to add" v-model="inputText" />
+    <br/>
+    <br/>
+    <button v-on:click="addTodo">Add</button>
+    <br/>
+    <br/>
+
+    <ul>
+      <li v-for="(todoItem,idx) in todoArray" v-bind:key="idx">{{ todoItem }}<button v-on:click="removeTodo(idx)">&times;</button></li>
+    </ul>
+  </div>
+
+  <script src="v-for.main.js"></script>
+</body>
+
+</html>
