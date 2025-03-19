@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Book {
+  #year;
+  constructor(title,author,year){
+    this.title = title;
+    this.author = author;
+    this.#year = year;
+  }
+  //公共方法：获取年份
+  getYear(){
+    return this.#year;
+  }
+
+  //公共方法：修改年份
+  setYear(newYear){
+    if(newYear > 0 && newYear <= new Date().getFullYear()){
+      this.#year = newYear;
+    } else{
+      console.log("无效的年份！")
+    }
+  }
+  //公共方法：是否能被借阅
+  canBeBorrowed(){
+    const currentYear = new Date().getFullYear();
+    return currentYear - this.#year <= 50;
+  }
+
+  getSummary(){
+    return `${this.title} 由 ${this.author} 于 ${this.#year} 年出版。`;
+  }
+}
+
+  const book1 = new Book("活着","余华",1993);
+  console.log(book1.getYear());//1993
+  book1.setYear(2000);
+  console.log(book1.setYear());
+
+  </script>
+</body>
+</html>
