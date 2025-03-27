@@ -1,4 +1,4 @@
-// function initial(){
+// function init(){
 //   var name = "Kevin";
 //   function displayName(){
 //     console.log(name);

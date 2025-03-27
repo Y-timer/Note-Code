@@ -1,4 +1,4 @@
-//示例1
+// 示例1
 // function TheName(){
 //   const name = "Kevin";
 //   function displayName(){
