@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 200px;
+      height: 100px;
+      background: #f0f0f0;
+      border: 2px solid #333;
+      text-align: center;
+      line-height: 100px;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">点击我（左键/右键）测试事件顺序</div>
+
+  <script>
+    const box = document.getElementById("box");
+
+    box.addEventListener("mousedown",(e) =>{
+      console.log(`mousedown(按键：${e.button})`);
+    });
+    box.addEventListener("mouseup",(e) =>{
+      console.log(`mouseup(按键：${e.button})`);
+    });
+    box.addEventListener("click",(e) =>{
+      console.log(`click`);
+    });
+    box.addEventListener("dblclick",()=>{
+      console.log("dblclick");
+    });
+    box.addEventListener("contextmenu",(e) =>{
+      console.log("contextmenu");
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>

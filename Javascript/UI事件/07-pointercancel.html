@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #ball{
+      width: 50px;
+      height: 50px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="ball" draggable="true"></div>
+
+  <script>
+    const ball = document.getElementById("ball");
+    let isDragging = false;
+
+    //监听指针事件
+    ball.addEventListener("pointerdown",(e) =>{
+      isDragging = true;
+      ball.style.background = "blue";
+      console.log("pointerdown:开始拖拽");
+    });
+    ball.addEventListener("pointermove",(e)=>{
+      if(!isDragging) return;
+      //更新小球位置
+      ball.style.left = e.clientX - 25 + "px";
+      ball.style.top = e.clientY - 25 + "px";
+      console.log("pointermove:拖拽中...");
+    });
+    ball.addEventListener("pointerup",(e)=>{
+      isDragging = false;
+      ball.style.background = "red";
+      console.log("pointerup:结束拖拽");
+    });
+    ball.addEventListener("pointercancel",(e)=>{
+      isDragging = false;
+      ball.style.background = "red";
+      console.error("pointercancel:拖拽被浏览器中断！");
+    });
+
+    //阻止原生浏览器的默认行为来避免 pointercancel 触发
+
+    
+
+  </script>
+</body>
+</html>
