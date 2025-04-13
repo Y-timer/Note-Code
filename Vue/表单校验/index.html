@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    #app{
+      text-align: center;
+      border-radius: 5px;
+      border:1px solid red;
+      width: 60%;
+      margin: 0 auto;
+      margin-top: 80px;
+    }
+    input{
+      margin: 0 auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .input-error{
+      border: 5px solid red;
+    }
+    button{
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <form v-on:submit.prevent="handleSubmit">
+      <input 
+        type="text" 
+        placeholder="请输入你的用户名" v-model="username"
+        v-bind:class="usernameError"
+      / >
+      <br />
+      <input 
+        type="password" 
+        placeholder="请输入你的密码" 
+        v-model="password"
+        v-bind:class="passwordError"
+      />
+      <br />
+      <button type="submit">登录</button>
+    </form>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+    const app = {
+      data(){
+        return {
+          username:"",
+          password:"",
+          usernameError:"",
+          passwordError:""
+        };
+      },
+      watch:{
+        username(newUsername,oldUsername){
+          if(this.username.length < 3){
+            this.usernameError = "input-error"
+          } else{
+            this.usernameError = ""
+          }
+        },
+        password(newUserPassword,oldUserPassword){
+          if(this.password.length < 6){
+            this.password = "input-error"
+          } else{
+            this.passwordError = ""
+          }
+        }
+      },
+      methods:{
+         handleSubmit(){
+          //event.preventDefault();
+
+          this.usernameError = this.passwordError = "";
+
+          if(this.username.length < 3 || this.password.length < 3){
+            alert("输入的用户名必须大于三且密码长度必须小于8");
+            if(this.username.length < 3){
+              this.usernameError = "input-error";
+            } else {
+              this.passwordError = "input-error" 
+            }
+            return;
+          }
+          alert(`用户名为: ${this.username} \n 密码为：${this.password}`);         
+        },
+      },
+    };
+
+    createApp(app).mount("#app");
+  </script>
+</body>
+</html>

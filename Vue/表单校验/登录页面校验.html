@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Microsoft Yahei", sans-serif;
+    }
+    .back-home{
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #31c27c;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-home:hover{
+      text-decoration: underline;
+    }
+
+    body{
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      padding-top: 100px;
+    }
+
+    .login-box{
+      width: 370px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 25px;
+    }
+
+    .login-box-hd{
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-box-select{
+      display: flex;
+      gap:30px;
+      justify-content: center;
+    }
+
+    .login-box-select a{
+      font-size: 18px;
+      color: #666;
+      text-decoration: none;
+      padding-bottom: 5px;
+    }
+
+    .login-box-select a.qq-login{
+      color: #000;
+      border-bottom: 2px solid #31c27c;
+    }
+
+    .login-box-bd{
+      padding: 20px 0;
+    }
+
+    .input-group{
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    input{
+      width: 100%;
+      height: 40px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0 15px;
+      margin-bottom: 15px;
+    }
+
+    input::placeholder{
+      color: #ccc;
+    }
+
+    .login-btn{
+      width: 100%;
+      height: 40px;
+      background: #31c27c;
+      color: white;
+      border: none;
+      border-radius:4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .links{
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .links a{
+      color:#31c27c;
+      text-decoration: none;
+    }
+
+    .qq-login-hd{
+      text-align: center;
+      margin: 10px 0;
+      color: #000;
+      font-size: 16px;
+      display: block;
+      width: 100%;
+    }
+
+    .qq-login {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .error-massage{
+      color: #ff4d4f;
+      font-size: 12px;
+      margin: -10px 0 12px;
+      height: auto;     
+    }
+    .input-group input{
+      margin-bottom: 15px;
+    }
+    input.error{
+      border-color: #ff4d4f !important;
+    }
+    .login-btn.loading{
+      opacity: 0.7;
+      pointer-events: none;
+      position: relative;
+    }
+    .login-btn.loading::after{
+      content: "";
+      position: absolute;
+      right: 10px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50px;
+      animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <a href="TheHeader.HTML" class="back-home">← 返回首页</a>
+  <nav class="login-box">
+    <div class="login-box-hd">
+      <h2 class="login-box-select">
+        <a class="qq-login" href="#">QQ登录</a>
+        <a class="wechat-login" href="#">微信登录</a>
+      </h2>
+    </div>
+    <div class="login-box-bd">
+      <div class="qq-login">
+        <a class="qq-login-hd">密码登录</a>
+        <!-- v-on:input 在输入框内容有变化时触发
+             v-on:blur 在输入框失去焦点时触发 -->
+        <input 
+          type="text" id="account" 
+          placeholder="支持QQ号/邮箱/手机号登录"
+          v-model="account"
+          v-on:input="inputAccount"
+          v-on:blur="inputAccount"
+          v-bind:class="{error:accountError}">
+          <!-- v-if 条件性地渲染元素或者模板片段 -->
+        <div v-if="accountError" class="error-massage">{{accountError}}</div>
+        <input 
+          type="password" id="password" placeholder="请输入密码"
+          v-model="password"
+          v-on:input="inputPassword"
+          v-on:blur="inputPassword"
+          v-bind:class="{error:passwordError}">
+        <div v-if="passwordError" class="error-massage">{{passwordError}}</div>
+      </div>
+      <button 
+        class="login-btn" id="submitLogin"
+        v-on:click.prevent = "handleSubmit"
+        v-bind:disabled="isSubmit"
+        v-bind:class="{loading:isSubmit}">{{ isSubmit ? "登录中..." : "登录"}}
+      </button>
+      <div class="links">
+        <a href="TheHeader.HTML">返回首页</a>
+        <a href="#">找回密码</a>
+        <a href="SignUp.html">注册账号</a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+  <script>
+    const { createApp } = Vue;
+    const app = {
+      data() {
+        return {
+          account:"",
+          password:"",
+          accountError:"",
+          passwordError:"",
+          isSubmit:false
+        }
+      },
+      methods:{
+        inputAccount(){
+          const qqNum = /^[1-9]\d{4,10}$/;
+          const phoneNum = /^1[3-9]\d{9}$/;
+          const emailNum = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          this.accountError = "";
+          if(!this.account.trim()){
+            this.accountError = "请输入账号";
+            return false;
+          }
+          if(!qqNum.test(this.account)&&!phoneNum.test(this.account)&&!emailNum.test(this.account)){
+            this.accountError = "账号格式不正确，请输入有效的QQ号/手机号/邮箱";
+            return false;
+          }
+          return true;
+        },
+        inputPassword(){
+          this.passwordError = "";
+          if(!this.password.trim()){
+            this.passwordError = "请输入密码";
+            return false;
+          }
+          if(this.password.length < 8){
+            this.passwordError = "密码格式不正确，请输入有效的密码";
+            return false;
+          }
+          return true;
+        },
+
+        async handleSubmit(){
+          const validateAccount = this.inputAccount();
+          const validatePassword = this.inputPassword();
+
+          if(!validateAccount || !validatePassword) return;
+
+          try{
+            this.isSubmit = true;
+            await new Promise(resolve => setTimeout(resolve,2000));
+            localStorage.setItem("musicLoggedIn",true);
+            window.location.href = "TheHeader.html";
+          } catch (error) {
+            console.error("登录失败", error);
+            alert("登录失败，请检查网络后重试");
+          } finally {
+            this.isSubmit = false;
+          }           
+          }
+        }
+      };
+  
+    createApp(app).mount("#app");
+  </script>
+</body>
+</html>
