@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Document</title>
+  <style>
+    /* .box{
+      width: 200px;
+      height: 200px;
+      border: 2px solid #aaa;
+    }
+    .btn{
+      margin-top: 20px;
+    }
+    .text-change{
+      text-decoration: red;
+    }
+    .active{
+      background: lightgreen;
+    } */
+    .static{
+      width: 300px;
+      padding: 20px;
+      margin-bottom: 10px;
+      border: 2px solid #ddd;
+      transition: all 0.3s;
+    }
+    .active{
+      background: lightgreen;
+    }
+    .text-danger{
+      color: red;
+      font-weight: bold;
+      border-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 渲染的结果 -->
+  <div id="app">
+  <div 
+    class="static"
+    v-bind:class="{ active: isActive , 'text-danger':hasError }"
+    >{{ statusMessage }}
+  </div>
+  <button v-on:click="toggleActive" class="btn">切换 Active</button>
+  <button v-on:click="toggleError" class="btn">切换 ErrorError</button>
+</div>
+
+  <script>
+    const { createApp } = Vue;
+    const App = {
+      data(){
+        return {
+          isActive: true,
+          hasError: false
+        }
+      },
+      computed:{
+        statusMessage(){
+          let message = "当前状态：";
+          if(this.isActive) message += "激活";
+          if(this.hasError) message += "错误";
+          return message || "当前无任何状态"
+        }
+      },
+      methods:{
+        toggleActive(){
+          this.isActive = !this.isActive
+        },
+        toggleError(){
+          this.hasError = !this.hasError
+        }
+      }
+    };
+    createApp(App).mount("#app");
+  </script>
+
+</body>
+</html>
