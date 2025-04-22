@@ -1,24 +1,39 @@
 <script>
-import PropsDemo2 from './components/PropsDemo2.vue';
+import componentEvents from './components/componentEvents.vue';
+
 export default {
-    components:{
-        PropsDemo,
-        PropsDemo2
-    },
+  components:{
+    componentEvents
+  },
   data(){
     return {
-        dynamicValue:10
-        }
+      //响应式变量
+      onceClicked:false,
+      clickCount:0
+    }
+  },
+  methods:{
+    handleOnceClick(){
+      this.onceClicked = true
+    },
+    handleCounter(eventData){
+      alert('收到事件数据：',eventData)
+      this.clickCount++
     }
   }
-
+}
 </script>
 
 <template>
-     <div>
-        <PropsDemo2 v-bind:initialCounter="5" />
-        <PropsDemo2 v-bind:initialCounter="dynamicValue" />
-     </div>
+  <div id="app">
+    <h3>事件演示</h3>
+    <componentEvents
+      v-on:click-one.once="handleOnceClick"
+      v-on:counter-increase="handleCounter" />
+      <p>一次性点击状态：{{ onceClicked ? '已触发' :'未触发' }}</p>
+      <p>累计点击次数：{{ clickCount }}</p>
+  </div>
+  
 </template>
 
 <style scoped>
