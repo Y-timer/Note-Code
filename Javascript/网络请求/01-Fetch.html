@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    //获取json对象
+    let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+    let response1 = await fetch(url);
+    let commits = await response1.json(); 
+    alert(commits[0].author.login);
+
+
+    //为二进制格式的演示示例
+    let response = await fetch('https://img1.baidu.com/it/u=1361177696,203903602&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1455');
+    let blob = await response.blob();
+    //创建一个<img>
+    let img = document.createElement('img');
+    img.style = 'position:fixed; top:20px; left:30px; width:100px; height:100px';
+    document.body.append(img);
+    //显示图片
+    img.src = URL.createObjectURL(blob);
+  </script>
+</body>
+</html>
