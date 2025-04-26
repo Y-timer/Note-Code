@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //创建一个控制器
+    let controller = new AbortController();
+    let signal = controller.signal;
+
+    //执行可取消操作部分，获取“signal”对象，并将监听器设置在controller.abort() 被调用时被触发
+    signal.addEventListener('abort',() => alert("abort!"));
+    //取消
+    controller.abort();
+
+    //事件触发，signal.aborted 变为 true
+    alert(signal.aborted);
+
+    //要并行的fetch的url列表
+    let urls = [...];
+
+    let controller = new AbortController();
+
+    //一个 fetch promise 的数组
+    let fetchJobs = urls.map(url => fetch(url,{
+      signal:controller.signal
+    }));
+    //最后将中止所有 fetch
+    let results = await Promise.all(fetchJobs);
+
+  </script>
+</body>
+</html>
