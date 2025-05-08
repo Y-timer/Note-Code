@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="imageContainer"></div>
+  <button onclick="loadImage()">加载照片</button>
+
+  <script>
+    async function loadImage() {
+      try{
+        //1.发送GET请求获取图片数据
+        const response = await axios({
+          method:'GET',
+          url:'https://via.placeholder.com/600x400',
+          responseType:'blob'
+        });
+
+        //2.将blob转换为可展示的URL
+        const blob = response.data;
+        const imageUrl = URL.createObjectURL(blob);
+
+        //3.创建img元素并设置src
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = "远程图片";
+        img.style.maxWidth = '100%';
+
+        //4.将图片添加到页面
+        const container = document.getElementById('imageContainer');
+        container.innerHTML = '';
+        container.appendChild(img);
+      } catch(error){
+        console.error('加载失败：',error);
+        alert('图片加载失败，请检查控制台！');
+      }
+    }
+  </script>
+</body>
+</html>

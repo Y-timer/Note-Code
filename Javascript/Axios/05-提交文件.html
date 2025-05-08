@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>提交文件和表单内容</title>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <button onclick="uploadFile()">上传文件</button>
+
+  <script>
+    async function uploadFile() {
+      try{
+        //创建表单数据对象
+        const formData = new FormData();
+        formData.append('userName','Kevin');
+        formData.append('description','用户头像');
+        //添加文件
+        const file = document.querySelector('#fileInput').files[0];
+        if(file){
+          formData.append('avatar',file); //'avatar' 对应服务器端接收的字段名
+        } else{
+          alert('请选择文件！');
+          return;
+        }
+        //发送文件
+        const { data } = await axios.post(
+          'https://httpbin.org/post',
+          formData,{
+            headers:{
+              'Content-Type':'multipart/form-data'
+            }
+          }
+        );
+        //显示结果
+        console.log('文件上传成功');
+        console.log('服务器返回的文件信息：',data.files);
+        console.log('表单字段：',data.form);
+      } catch(error){
+        console.error('上传失败：',error);
+      }
+    }
+  </script>
+</body>
+</html>
+

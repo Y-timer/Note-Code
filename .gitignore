@@ -1,0 +1,37 @@
+# 依赖目录
+node_modules/
+.bower_components/
+
+# 构建输出
+dist/
+build/
+out/
+public/bundle.js
+*.js.map
+
+# 环境文件
+.env
+.env.local
+.env*.local
+
+# IDE 与 编辑器
+.idea
+.vscode/*
+!.vscode/extensions.json
+*.swo
+*.swp
+.DS_Store
+Thumb.db
+
+# 调试
+/cypress/screenshots/
+/cypress/videos/
+
+# 日志文件
+*.log
+
+# 缓存与临时文件
+.cache/
+.temp/
+*.tmp
+.eslintcache

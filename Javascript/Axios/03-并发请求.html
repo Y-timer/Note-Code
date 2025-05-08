@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+     //并发请求(获取用户数据和用户所有帖子)
+     function getUser(){
+      return axios.get('https://jsonplaceholder.typicode.com/users/1');
+    }
+    function getUserPosts(){
+      return axios.get('https://jsonplaceholder.typicode.com/posts?userId=1');
+    }
+    //法一：async/await
+    async function fetchData(){
+      try{
+        const [userResponse,postResponse] = await Promise.all([getUser(),getUserPosts()]);
+        console.log('并发请求成功！');
+        console.log('用户名称：',userResponse.data.name);
+        console.log('帖子数量',postResponse.data.length);
+      } catch(error){
+        console.log('并发请求失败：',error);
+      }
+    }
+    fetchData();
+    //法2：Promise.then
+    Promise.all([getUser(),getUserPosts()])
+    .then(([userResponse,postResponse]) =>{
+      console.log('并发请求成功！');
+      console.log('用户邮箱：',userResponse.data.email);
+      console.log('第一篇帖子的标题：',postResponse.data[0].title);
+    })
+    .catch(error =>{
+      console.log('并发请求失败：',error);
+    });
+  </script>
+</body>
+</html>

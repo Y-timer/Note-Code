@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <!-- 简单的表单结构 -->
+  <form id="myForm">
+    <input type="text" name="name" placeholder="姓名" required>
+    <input type="email" name="email" placeholder="邮箱" required>
+    <textarea name="message" placeholder="留言"></textarea>
+    <button type="submit">提交</button>
+  </form>
+
+  <script>
+    //DOM操作，获取表单元素
+    const form = document.querySelector('#myForm');
+
+    //表单提交事件处理
+    form.addEventListener('submit',async(e)=>{
+      e.preventDefault();
+      try{
+        //将表单数据转换为JSON
+        const formData = new FormData(form);
+        const jsonData = Object.fromEntries(formData.entries());
+
+        //发送POST请求
+        const response = await axios.post(
+          'https://jsonplaceholder.typicode.com/users',
+          jsonData,//直接传递JavaScript对象（axios自动转换为json）
+          {
+            headers:{
+              'Content-Type':'application/json'
+            }
+          }
+        );
+        //处理响应
+        console.log('请求成功！');
+        console.log('状态码：',response.status);
+        console.log('服务器返回数据：',response.data);
+        form.reset();
+      }catch (error){
+        console.log('请求失败！');
+        if(error.response){
+          console.log('错误状态码：',error.response.status);
+          console.log('错误信息：',error.response.data);
+        } else{
+          console.log('错误信息：',error.message);
+        }
+      }
+      });
+    
+  </script>
+</body>
+</html>

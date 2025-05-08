@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    //发送POST请求（创建新文章）
+    axios.post('https://jsonplaceholder.typicode.com/posts',{
+      title: 'Axios 教程',
+      body: '学习 Axios HTTP 请求',
+      userId: 1
+    })
+    .then(response =>{
+      console.log('POST 请求成功！');
+      console.log('状态码：',response.stats);
+      console.log('响应数据：',{
+        id: response.data.id,
+        title: response.data.title,
+        body: response.data.body,
+      }); 
+    })
+    .catch(error =>{
+      console.log('POST 请求失败！');
+      console.log('错误信息：',error.message);
+    });
+
+   
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="getData()">获取数据</button>
+  <div id="result"></div>
+
+  <script>
+    async function getData() {
+      try{
+        const response = await axios(
+          'https://jsonplaceholder.typicode.com/posts', //url
+          { //配置对象
+            params:{
+              userId:1
+            },
+            headers:{
+              'X-Requested-With':'XMLHttpRequest'
+            },
+            timeout:5000
+          },
+        );
+        //响应数据
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <h3>用户 1 的最新帖子：</h3>
+        <p>${response.data[0].title}</p>
+        <small>正文：${response.data[0].body}</small>
+      `;
+      } catch(error){
+        console.error('请求失败：',error);
+        document.getElementById('result').innerHTML = `<p style="color:red">加载失败，请检查控制台</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
